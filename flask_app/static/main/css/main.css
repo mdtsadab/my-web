@@ -8,6 +8,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
 
 /* Main container */
@@ -16,7 +22,19 @@ body {
     margin: 20px auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers all content horizontally */
+    align-items: center;
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* About Me Title */
@@ -26,6 +44,21 @@ body {
     font-weight: bold;
     margin-bottom: 30px;
     margin-top: 20px;
+    color: #18453B;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #18453B;
+    border-radius: 2px;
 }
 
 /* Two column layout */
@@ -47,7 +80,7 @@ body {
 .right-column {
     display: flex;
     flex-direction: column;
-    max-width: 600px; /* Adjust based on preference */
+    max-width: 600px;
 }
 
 /* Profile photo styling */
@@ -62,6 +95,14 @@ body {
     height: 100%;
     object-fit: contain;
     object-position: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 /* Right column with scrollable text */
@@ -73,22 +114,24 @@ body {
 /* Bold and bigger for intro text "Hi! I'm Towsif," */
 .intro-bold {
     font-weight: bold;
-    font-size: 1.4em; /* Bigger than rest */
+    font-size: 1.4em;
+    color: #18453B;
 }
 
 .description-container {
     flex: 1;
-    overflow-y: auto; /* auto scrollbar only when needed */
+    overflow-y: auto;
     text-align: justify;
-    line-height: 1.6;
+    line-height: 1.8;
     padding-right: 10px;
+    color: #333;
 }
 
 .description-container p {
     margin-bottom: 15px;
 }
 
-/* Scrollbar styling like Chrome */
+/* Scrollbar styling */
 .description-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -99,52 +142,61 @@ body {
 }
 
 .description-container::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #18453B;
     border-radius: 4px;
 }
 
 .description-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #0f2e26;
 }
 
 /* Fun fact box - full width version */
 .fun-fact {
     text-align: center;
-    padding: 30px 20px; /* Add horizontal padding */
-    background-color: #f5f5f5; /* Light gray background */
-    border-radius: 10px;
-    width: 95%; /* Almost full width */
-    margin: 20px auto; /* Center horizontally */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+    border-radius: 15px;
+    width: 95%;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #18453B;
+    transition: transform 0.3s ease;
+}
+
+.fun-fact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .fun-fact h3 {
     margin-bottom: 15px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bold;
+    color: #18453B;
 }
 
 .fun-fact p {
-    font-size: 1em;
+    font-size: 1.05em;
     line-height: 1.6;
     margin: 0;
+    color: #555;
 }
-
 
 /* Footer at bottom */
 footer {
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     background-color: #333;
     color: #fff;
-    margin-top: 20px;
+    margin-top: 40px;
+    font-size: 0.95em;
 }
 
 /* Mobile layout */
 @media (max-width: 650px) {
     .content-wrapper {
         flex-direction: column;
-        height: auto; /* let height grow */
+        height: auto;
     }
 
     .description-container {
@@ -162,42 +214,53 @@ footer {
 .project-intro p {
     font-size: 1.1em;
     margin: 10px 0;
+    color: #555;
 }
 
 .right-column h3 {
     font-size: 1.5em;
     margin-bottom: 15px;
+    color: #18453B;
 }
 
 .right-column a {
-    color: #0066cc;
+    color: #18453B;
     text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .right-column a:hover {
+    color: #0f2e26;
     text-decoration: underline;
 }
 
 .more-coming {
     text-align: center;
     margin: 50px auto;
-    padding: 30px;
+    padding: 40px;
     border-top: 2px solid #e0e0e0;
 }
 
 .more-coming h3 {
     font-size: 1.5em;
-    color: #666;
+    color: #18453B;
+    margin-bottom: 10px;
 }
 
-/* Make piano image clickable with hover effect */
+.more-coming p {
+    color: #666;
+    font-size: 1.05em;
+}
+
+/* Make images clickable with hover effect */
 .left-column a {
     display: block;
     transition: opacity 0.3s;
 }
 
 .left-column a:hover {
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* Mobile responsiveness for screens less than 650px */
@@ -216,6 +279,10 @@ footer {
     /* Make content single column on mobile */
     .content-wrapper {
         grid-template-columns: 1fr;
-        width: 90vw; /* Slightly wider on mobile for readability */
+        width: 90vw;
+    }
+    
+    .section-title {
+        font-size: 1.5em;
     }
 }

@@ -1,6 +1,6 @@
 {% extends 'shared/layout.html' %}
 
-{% block title %}Feedback - Towsif's Portfolio{% endblock %}
+{% block title %}Messages - Towsif's Portfolio{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -8,7 +8,7 @@
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
-    min-height: calc(100vh - 400px); /* Push footer down */
+    min-height: calc(100vh - 400px);
 }
 
 .feedback-title {
@@ -36,6 +36,12 @@
     margin-bottom: 15px;
     border-radius: 8px;
     border-left: 4px solid #18453B;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feedback-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .feedback-author {
@@ -55,24 +61,33 @@
     font-size: 1.2em;
     padding: 60px 20px;
 }
+
+.success-icon {
+    font-size: 3em;
+    color: #18453B;
+    margin-bottom: 20px;
+}
 </style>
 {% endblock %}
 
 {% block maincontent %}
 <div class="feedback-container">
-    <h1 class="feedback-title">Thanks for your feedback - here's what others had to say:</h1>
+    <div class="success-icon">✓</div>
+    <h1 class="feedback-title">Thank you for your message!</h1>
+    <p class="feedback-subtitle">I appreciate you reaching out. Here's what others have said:</p>
     
     {% if feedbacks and feedbacks|length > 0 %}
         <ul class="feedback-list">
             {% for feedback in feedbacks %}
             <li class="feedback-item">
-                <div class="feedback-author">{{ feedback.name }} said: {{ feedback.message }}</div>
+                <div class="feedback-author">{{ feedback.name }}</div>
+                <div class="feedback-message">"{{ feedback.message }}"</div>
             </li>
             {% endfor %}
         </ul>
     {% else %}
         <div class="no-feedback">
-            <p>No feedback yet. Be the first to share your thoughts!</p>
+            <p>Be the first to reach out!</p>
         </div>
     {% endif %}
 </div>

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='main/css/header.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='main/css/feedback.css') }}">
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='main/images/favicon.ico') }}">
 {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -21,7 +22,7 @@
 <!-- Navbar -->
 <nav>
 <div class="nav-left">
-<span class="assignment-name">CSE 477 - Homework 2</span>
+<span class="assignment-name">Towsif's Portfolio</span>
 </div>
 <div class="nav-right">
 <a href="/home">Home</a>
@@ -42,22 +43,23 @@
 
 <!-- Footer -->
 <footer>
-&copy; 2025 Md Towsif Sadab
+&copy; 2025 Md Towsif Sadab | Full Stack Developer
 </footer>
 
-<!-- Floating Feedback Button -->
+<!-- Floating Contact Button -->
 <div class="feedback-float-btn" onclick="openFeedbackModal()">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <span>Feedback</span>
+    <span>Contact Me</span>
 </div>
 
-<!-- Feedback Modal -->
+<!-- Contact Modal -->
 <div id="feedbackModal" class="feedback-modal">
     <div class="feedback-modal-content">
         <span class="feedback-close" onclick="closeFeedbackModal()">&times;</span>
-        <h2>Send Feedback</h2>
+        <h2>Get In Touch</h2>
+        <p style="color: #666; margin-bottom: 20px;">Have a question or want to work together? Send me a message!</p>
         <form id="feedbackForm" onsubmit="submitFeedback(event)">
             <div class="form-group">
                 <label for="fb-name">Name</label>
@@ -68,18 +70,16 @@
                 <input type="email" id="fb-email" name="email" placeholder="Your Email" title="Enter a valid email address" required>
             </div>
             <div class="form-group">
-                <label for="fb-comment">Feedback</label>
-                <textarea id="fb-comment" name="comment" rows="5" placeholder="Insert Feedback here" title="Enter your feedback or comments" required></textarea>
+                <label for="fb-comment">Message</label>
+                <textarea id="fb-comment" name="comment" rows="5" placeholder="Your message here..." title="Enter your message" required></textarea>
             </div>
-            <button type="submit" class="feedback-submit-btn">SEND</button>
+            <button type="submit" class="feedback-submit-btn">SEND MESSAGE</button>
         </form>
         <div id="feedbackSuccess" class="feedback-success" style="display: none;">
-            <p>✓ Thank you for your feedback!</p>
+            <p>✓ Thank you for reaching out! I'll get back to you soon.</p>
         </div>
     </div>
 </div>
-
-
 
 <script src="{{ url_for('static', filename='main/js/feedback.js') }}"></script>
 {% block extra_js %}{% endblock %}

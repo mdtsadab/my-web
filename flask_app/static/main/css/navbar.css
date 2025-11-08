@@ -2,10 +2,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background: linear-gradient(135deg, #18453B 0%, #0f2e26 100%);
     color: white;
-    padding: 30px 30px;
-    position: relative;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .nav-left {
@@ -13,13 +16,14 @@ nav {
 }
 
 .assignment-name {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .nav-right {
     display: flex;
-    gap: 25px;
+    gap: 30px;
     align-items: center;
 }
 
@@ -27,11 +31,29 @@ nav {
     color: white;
     text-decoration: none;
     font-size: 16px;
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-right a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-right a:hover::after {
+    width: 100%;
 }
 
 .nav-right a:hover {
-    color: #ddd;
+    color: #e0e0e0;
 }
 
 .linkedin {
@@ -39,13 +61,21 @@ nav {
     align-items: center;
     gap: 8px;
     background-color: #0077b5;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 10px 18px;
+    border-radius: 8px;
     text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,119,181,0.3);
 }
 
 .linkedin:hover {
     background-color: #005582;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,119,181,0.4);
+}
+
+.linkedin::after {
+    display: none;
 }
 
 .linkedin-text {
@@ -56,29 +86,56 @@ nav {
     display: none;
     font-size: 28px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
 }
 
 /* Mobile menu styles */
 @media (max-width: 768px) {
+    nav {
+        padding: 20px 25px;
+    }
+
     .nav-right {
         position: absolute;
         top: 100%;
         right: 0;
         background: #18453B;
         flex-direction: column;
-        width: 200px;
+        width: 220px;
         padding: 20px;
         display: none;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        border-radius: 0 0 0 10px;
     }
 
     .nav-right.show {
         display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .nav-right a {
-        padding: 10px 0;
+        padding: 12px 0;
         border-bottom: 1px solid rgba(255,255,255,0.1);
+        width: 100%;
+    }
+
+    .nav-right a:last-child {
+        border-bottom: none;
     }
 
     .menu-icon {
@@ -111,5 +168,9 @@ nav {
         height: auto;
         max-height: 200px;
         object-fit: cover;
+    }
+    
+    .assignment-name {
+        font-size: 16px;
     }
 }

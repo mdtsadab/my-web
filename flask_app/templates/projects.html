@@ -3,29 +3,44 @@
 {% block title %}Projects - Towsif's Portfolio{% endblock %}
 
 {% block maincontent %}
-<h2 class="section-title">Projects</h2>
+<h2 class="section-title">My Projects</h2>
 <!-- Single column intro -->
 <div class="project-intro">
-    <p>Below is a list of projects I worked on in CSE 477:</p>
-    <p>Click an image, or hyperlink in the description to learn more.</p>
+    <p>Here are some of the projects I've built that showcase my skills in web development, interactive design, and full-stack engineering.</p>
+    <p>Click on an image or link to explore each project in detail.</p>
 </div>
 <!-- Two column project display -->
 <div class="content-wrapper">
     <div class="left-column">
         <a href="/piano">
-            <img src="{{ url_for('static', filename='main/images/piano.jpeg') }}" alt="Javascript Piano" class="profile-photo" loading="lazy">
+            <img src="{{ url_for('static', filename='main/images/piano.jpeg') }}" alt="Interactive JavaScript Piano" class="profile-photo" loading="lazy">
         </a>
     </div>
     <div class="right-column">
-        <h3>Javascript Piano</h3>
+        <h3>Interactive JavaScript Piano</h3>
         <div class="description-container">
-            <p>As part of my first Homework assignment in CSE477, I developed an interactive piano build in pure HTML, CSS and Javascript. This tool (in addition to my webpage) highlight my ability to build beautiful and mobile-friendly front-end applications. <a href="/piano">Click here to see, and play!</a></p>
+            <p>A fully interactive virtual piano built with pure HTML, CSS, and vanilla JavaScript. Features responsive design, keyboard controls, audio playback, and a mysterious easter egg. This project demonstrates my front-end development skills and attention to detail in creating engaging user experiences. <a href="/piano">Click here to play!</a></p>
         </div>
     </div>
 </div>
+
+<!-- Second project - This Portfolio Website -->
+<div class="content-wrapper">
+    <div class="left-column">
+        <img src="{{ url_for('static', filename='main/images/banner.jpg') }}" alt="Portfolio Website" class="profile-photo" loading="lazy">
+    </div>
+    <div class="right-column">
+        <h3>Dynamic Portfolio Website</h3>
+        <div class="description-container">
+            <p>This portfolio website itself is a full-stack web application built with Flask, MySQL, and modern front-end technologies. It features a database-driven resume, contact form with backend integration, responsive design, and smooth animations. The site demonstrates my ability to create professional web applications from scratch, including database design, RESTful API development, and polished UI/UX.</p>
+        </div>
+    </div>
+</div>
+
 <!-- More coming soon section -->
 <div class="more-coming">
-    <h3>More coming soon!</h3>
+    <h3>More projects coming soon!</h3>
+    <p style="color: #666; margin-top: 10px;">I'm constantly working on new projects. Check back later for updates.</p>
 </div>
 {% endblock %}
 
