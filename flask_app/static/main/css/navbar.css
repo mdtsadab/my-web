@@ -1,0 +1,115 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 30px 30px;
+    position: relative;
+}
+
+.nav-left {
+    flex: 1;
+}
+
+.assignment-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-right {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-right a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-right a:hover {
+    color: #ddd;
+}
+
+.linkedin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0077b5;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.linkedin:hover {
+    background-color: #005582;
+}
+
+.linkedin-text {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    .nav-right {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #18453B;
+        flex-direction: column;
+        width: 200px;
+        padding: 20px;
+        display: none;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-right.show {
+        display: flex;
+    }
+
+    .nav-right a {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu-icon {
+        display: block;
+    }
+    
+    /* Show "LinkedIn" text instead of icon on mobile */
+    .linkedin i {
+        display: none;
+    }
+    
+    .linkedin-text {
+        display: inline !important;
+    }
+}
+
+/* On screens less than 650px - force LinkedIn text */
+@media (max-width: 650px) {
+    .linkedin i {
+        display: none !important;
+    }
+    
+    .linkedin-text {
+        display: inline !important;
+    }
+    
+    /* Fix header image overflow */
+    header .banner {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,6 @@
+"inst_id","type","name","department","address","city","state","zip"
+"1","Academia","Michigan State University","Computer Science","NULL","East Lansing","Michigan","NULL"
+"2","Industry","Jackson National Life Insurance Company","Data Analytics & Engineering",NULL,"Lansing","Michigan","NULL"
+"3","Industry","Accenture","Software & Technology Consulting",NULL,"Detroit","Michigan","NULL"
+"4","Involvement","Bengali Student Association","Michigan State University",NULL,"East Lansing","Michigan","NULL"
+"5","Projects","Michigan State University","Computer Science",NULL,"East Lansing","Michigan","NULL"

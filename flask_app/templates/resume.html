@@ -1,0 +1,310 @@
+{% extends 'shared/layout.html' %}
+
+{% block title %}Resume - Towsif's Portfolio{% endblock %}
+
+{% block extra_css %}
+<style>
+.resume-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-height: calc(100vh - 400px);
+}
+
+.resume-header {
+    text-align: center;
+    border-bottom: 3px solid #18453B;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.resume-header h1 {
+    color: #18453B;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.resume-header .contact-info {
+    color: #555;
+    font-size: 0.95em;
+}
+
+.resume-section {
+    margin-bottom: 35px;
+}
+
+.section-title {
+    color: #18453B;
+    font-size: 1.4em;
+    font-weight: 700;
+    border-bottom: 2px solid #18453B;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.objective-text {
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+}
+
+.position-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    font-weight: 700;
+    flex-wrap: wrap;
+}
+
+.position-left {
+    color: #333;
+}
+
+.position-right {
+    color: #333;
+    text-align: right;
+}
+
+.experience-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.experience-list li {
+    color: #444;
+    padding-left: 15px;
+    position: relative;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.experience-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.experience-list li.education-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.education-row .right-aligned {
+    margin-left: auto;
+    padding-left: 20px;
+}
+
+.education-row .date-range {
+    margin-left: auto;
+    padding-left: 20px;
+    white-space: nowrap;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.skill-item {
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 20px;
+    }
+    
+    .position-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .position-right {
+        text-align: left;
+        margin-top: 5px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
+
+{% block maincontent %}
+<div class="resume-container">
+    <!-- Header -->
+    <div class="resume-header">
+        <h1>MD TOWSIF SADAB</h1>
+        <div class="contact-info">
+            DETROIT, MI | SADABMD@MSU.EDU | (586) 365-8925
+        </div>
+    </div>
+
+    <!-- Objective -->
+    <div class="resume-section">
+        <h2 class="section-title">Objective</h2>
+        <p class="objective-text">
+            To obtain a fall/spring/summer 2025-2026 internship/co-op/new-grad full-time position in the field of Computer/Data Science in software developing, app/web developing, data engineering, IT, or any engineering related areas.
+        </p>
+    </div>
+
+    <!-- Education Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Education</h2>
+        {% for inst_id, institution in resume_data.items() %}
+            {% if institution.type == 'Academia' %}
+                {% for pos_id, position in institution.positions.items() %}
+                <div class="position-header">
+                    <div class="position-left">
+                        {{ institution.name }} – {{ institution.city }}, {{ institution.state[:2]|upper if institution.state else '' }}
+                    </div>
+                    <div class="position-right">
+                        {{ position.end_date.strftime('%B %Y') if position.end_date else 'Present' }}
+                    </div>
+                </div>
+                <ul class="experience-list">
+                    <li class="education-row">
+                        <span>{{ position.title }}</span>
+                        <span class="right-aligned">{{ position.responsibilities }}</span>
+                    </li>
+                    {% for exp_id, experience in position.experiences.items() %}
+                    <li class="education-row">
+                        <span>{{ experience.name }} – {{ experience.description }}</span>
+                        <span class="date-range">
+                            {% if experience.start_date %}
+                                {{ experience.start_date.strftime('%b %Y') }} – Present
+                            {% endif %}
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Work Experience Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Work Experience</h2>
+        {% for inst_id, institution in resume_data.items() %}
+            {% if institution.type == 'Industry' %}
+                {% for pos_id, position in institution.positions.items() %}
+                <div class="position-header">
+                    <div class="position-left">
+                        {{ position.title }} – {{ institution.name }}
+                    </div>
+                    <div class="position-right">
+                        {% if position.start_date %}
+                            {{ position.start_date.strftime('%B %Y') }}
+                        {% endif %}
+                        {% if position.end_date %}
+                            – {{ position.end_date.strftime('%B %Y') }}
+                        {% else %}
+                            – Present
+                        {% endif %}
+                    </div>
+                </div>
+                <ul class="experience-list">
+                    {% for exp_id, experience in position.experiences.items() %}
+                    <li>{{ experience.description }}</li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Academic Experience Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Academic Experience</h2>
+        {% for inst_id, institution in resume_data.items() %}
+            {% if institution.type == 'Projects' %}
+                {% for pos_id, position in institution.positions.items() %}
+                    {% set experiences_list = position.experiences.items()|list|sort(attribute='1.start_date', reverse=true) %}
+                    {% set processed_names = [] %}
+                    {% for exp_id, experience in experiences_list %}
+                        {% if experience.name not in processed_names %}
+                            <div class="position-header">
+                                <div class="position-left">
+                                    {{ experience.name }}
+                                </div>
+                                <div class="position-right">
+                                    {% if experience.end_date %}
+                                        {{ experience.end_date.strftime('%B %Y') }}
+                                    {% elif experience.start_date %}
+                                        {{ experience.start_date.strftime('%B %Y') }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <ul class="experience-list">
+                                {% for exp_id2, experience2 in experiences_list %}
+                                    {% if experience2.name == experience.name %}
+                                        <li>{{ experience2.description }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% set _ = processed_names.append(experience.name) %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Involvement Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Involvement</h2>
+        {% for inst_id, institution in resume_data.items() %}
+            {% if institution.type == 'Involvement' %}
+                {% for pos_id, position in institution.positions.items() %}
+                <div class="position-header">
+                    <div class="position-left">
+                        {{ institution.name }}, {{ institution.department }} – {{ position.title }}
+                    </div>
+                    <div class="position-right">
+                        {% if position.start_date %}
+                            {{ position.start_date.strftime('%B %Y') }} – Present
+                        {% endif %}
+                    </div>
+                </div>
+                <ul class="experience-list">
+                    <li>{{ position.responsibilities }}</li>
+                </ul>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Skills Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                • Java, JS, Python, VBA, JSON, HTML, CSS, TypeScript, C++, C#, SQL, Databricks – Proficient
+            </div>
+            <div class="skill-item">
+                • Postman (API), git, Microsoft Azure DevOps, Power BI, Unity, Excel – Proficient
+            </div>
+            <div class="skill-item">
+                • Angular.js, Node.js – Proficient
+            </div>
+            <div class="skill-item">
+                • Project management, AGILE – Proficient
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Towsif's personal page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main/css/main.css') }}?v=3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main/css/navbar.css') }}?v=3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main/css/footer.css') }}?v=3">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main/css/header.css') }}?v=3">
+
+    <!-- Font for LinkedIn icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="{{ url_for('static', filename='main/images/banner.jpg') }}" alt="Portfolio Banner" class="banner">
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-left">
+            <span class="assignment-name">CSE 477 - Homework 1</span>
+        </div>
+        <div class="nav-right">
+            <a href="/home">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="resume.pdf" target="_blank">Resume</a>
+            <a href="https://www.linkedin.com/in/md-towsif-sadab/" target="_blank" class="linkedin">
+                <i class="fab fa-linkedin"></i>
+                <span class="linkedin-text">LinkedIn</span>
+            </a>
+        </div>
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main-container">
+        <h1 class="section-title">About Me</h1>
+        
+        <div class="content-wrapper">
+            <div class="left-column">
+                <img src="{{ url_for('static', filename='main/images/me.jpg') }}" alt="Profile Photo" class="profile-photo">
+            </div>
+            <div class="right-column">
+                <div class="description-container">
+                    <p><span class="intro-bold">Hi! I'm Towsif,</span> a Computer Science undergrad at Michigan State University with a strong background in tech including software development, data analysis, app development and web technologies. I have hands-on experience in both academic and professional settings, including internships at Jackson National Life Insurance Company and Accenture, where I contributed to real-world projects using Python, SQL, Power BI, Databricks, VBA, JavaScript, Azure, TypeScript, and various other development tools.</p>
+                    
+                    <p>I enjoy building interactive applications, from predictive models and economic forecasts to games and web apps, and I've led projects using C++, Java, Python, in Agile methodologies. Beyond technical work, I'm actively involved in student organizations, recently served as Secretary for the Bengali Student Association, where I organized events and manage team documentation.</p>
+                    
+                    <p>In addition to my technical skills, I bring strong communication and leadership abilities, having coordinated with cross-functional teams and presented findings to stakeholders. I'm passionate about solving real-world problems through technology, collaborating with teams to design efficient solutions, and continuously expanding my skill set in today's tech-world.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fun-fact">
+            <h3>Fun fact:</h3>
+            <p>I love cooking, baking, playing soccer, and eating sushi with my gf! My favorite number is 13 :D </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Md Towsif Sadab
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navRight = document.querySelector('.nav-right');
+            navRight.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{% extends 'shared/layout.html' %}
+
+{% block title %}Feedback - Towsif's Portfolio{% endblock %}
+
+{% block extra_css %}
+<style>
+.feedback-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 400px); /* Push footer down */
+}
+
+.feedback-title {
+    text-align: center;
+    color: #18453B;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.feedback-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.feedback-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feedback-item {
+    background: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #18453B;
+}
+
+.feedback-author {
+    font-weight: 600;
+    color: #18453B;
+    margin-bottom: 5px;
+}
+
+.feedback-message {
+    color: #555;
+    line-height: 1.6;
+}
+
+.no-feedback {
+    text-align: center;
+    color: #999;
+    font-size: 1.2em;
+    padding: 60px 20px;
+}
+</style>
+{% endblock %}
+
+{% block maincontent %}
+<div class="feedback-container">
+    <h1 class="feedback-title">Thanks for your feedback - here's what others had to say:</h1>
+    
+    {% if feedbacks and feedbacks|length > 0 %}
+        <ul class="feedback-list">
+            {% for feedback in feedbacks %}
+            <li class="feedback-item">
+                <div class="feedback-author">{{ feedback.name }} said: {{ feedback.message }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="no-feedback">
+            <p>No feedback yet. Be the first to share your thoughts!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
